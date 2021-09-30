@@ -73,10 +73,10 @@ function Home() {
 				<p className="city">
 					<a href="?city=Tokyo">Tokyo</a>
 				</p>
-        <p className="city">
+				<p className="city">
 					<a href="?city=Chengdu">Chengdu</a>
 				</p>
-        <p className="city">
+				<p className="city">
 					<a href="?city=Seattle">Seattle</a>
 				</p>
 			</header>
