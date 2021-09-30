@@ -1,42 +1,97 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 import WeatherCard from "../components/WeatherCard";
 
-function Home(){
+const API_KEY = `7b6c554c1c80989ca3ba734820b0eed4`;
 
-const { 
-  cloudiness, 
-  currentTemp, 
-  highTemp, 
-  humidity, 
-  lowTemp, 
-  weatherType, 
-  windSpeed 
-} = useMemo(() => {
-  return {
-    cloudiness: 100,
-    currentTemp: `76`,
-    highTemp: `80`,
-    humidity: 100,
-    lowTemp: `80`,
-    weatherType: "Cloudy",
-    windSpeed: `10mph`,
-  }
-})
+// URL Search Params...
+// http://localhost:3000/?city=paris
+function useQuery() {
+	return new URLSearchParams(useLocation().search);
+}
 
-  return (
-    <main className="App">
-      <header className="title">Weather App</header>
-      <WeatherCard 
-        cloudiness={cloudiness}
-        currentTemp={currentTemp} 
-        highTemp={highTemp}
-        humidity={humidity}
-        lowTemp={lowTemp} 
-        weatherType={weatherType}
-        windSpeed={windSpeed}
-      />
-    </main>
-  );
+const kelvinToCelsius = (kelvin) => (kelvin - 273.15).toFixed(1);
+
+function Home() {
+	const [city, setCity] = useState();
+	const [weatherData, setWeatherData] = useState();
+	let query = useQuery();
+
+	const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+
+	useEffect(() => {
+		const cityValue = query.get("city");
+		setCity(cityValue);
+	}, [query]);
+
+	// Get weather Data from Weather API
+	useEffect(() => {
+		// Allows you to make HTTP requests
+		// Promise... do asynchronous requests in JavaScript
+		if (city) {
+			axios
+				.get(URL)
+				.then(function (response) {
+					// handle success
+					setWeatherData(response.data);
+				})
+				.catch(function (error) {
+					// handle error
+					console.warn(error);
+				});
+		}
+	}, [URL, city]);
+
+	const {
+		currentTemp,
+		cloudiness,
+		highTemp,
+		humidity,
+		lowTemp,
+		weatherType,
+		windSpeed,
+	} = useMemo(() => {
+		if (!weatherData) return {};
+		return {
+			currentTemp: kelvinToCelsius(weatherData.main.temp) + " \u00B0C",
+			cloudiness: weatherData.clouds.all,
+			highTemp: kelvinToCelsius(weatherData.main.temp_max) + " \u00B0C",
+			humidity: weatherData.main.humidity,
+			lowTemp: kelvinToCelsius(weatherData.main.temp_min) + " \u00B0C",
+			weatherType: weatherData.weather[0].main,
+			windSpeed: weatherData.wind.speed,
+		};
+	}, [weatherData]);
+
+	return (
+		<main className="App">
+			<header className="nav">
+				<p className="city">
+					<a href="?city=Paris">Paris</a>
+				</p>
+				<p className="city">
+					<a href="?city=Tokyo">Tokyo</a>
+				</p>
+        <p className="city">
+					<a href="?city=Chengdu">Chengdu</a>
+				</p>
+        <p className="city">
+					<a href="?city=Seattle">Seattle</a>
+				</p>
+			</header>
+			<h1 className="title">{city}</h1>
+			<WeatherCard
+				currentTemp={currentTemp}
+				cloudiness={cloudiness}
+				highTemp={highTemp}
+				humidity={humidity}
+				lowTemp={lowTemp}
+				weatherType={weatherType}
+				windSpeed={windSpeed}
+			/>
+		</main>
+	);
 }
 
 export default Home;
