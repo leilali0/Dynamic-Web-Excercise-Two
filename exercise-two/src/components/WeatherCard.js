@@ -14,11 +14,11 @@ function WeatherCard({
 		<section className="WeatherCard">
 			<div className="tempWrapper">
 				<div className="currentWeatherWrapper">
-				<div className="weatherImageWrapper">
-					<WeatherImage weatherType={weatherType} />
-				</div>
-				<p className="currentTemp">Current Temp:</p>
-				<p className="currentTempNumber">{currentTemp}</p>
+					<div className="weatherImageWrapper">
+						<WeatherImage weatherType={weatherType} />
+					</div>
+					<p className="currentTemp">Current Temp:</p>
+					<p className="currentTempNumber">{currentTemp}</p>
 				</div>
 
 				<div className="highLowTempWrapper">
