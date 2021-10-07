@@ -1,6 +1,6 @@
 .App {
 	margin: 20px auto;
-	max-width: 1080px;
+	max-width: 1020px;
 	padding: 0 25px;
 }
 
@@ -38,33 +38,71 @@
 }
 
 .text {
-	font-size: 18px;
+	font-size: 20px;
 }
 
-.tempWrapper{
+.solid {
+	margin: 0;
+	border-bottom: 2px solid black;
+	line-height: 1;
+}
+
+.tempWrapper {
+	margin: 0 80px;
 	display: flex;
-	justify-content: space-around;
+}
+
+.currentWeatherWrapper {
+	display: flex;
+	margin-top: 30px;
+	padding-bottom: 30px;
+}
+
+.highLowTempWrapper {
+	margin-left: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .weatherImageWrapper {
-	display: flex;
-	justify-content: center;
-	font-size: 40px;
-	padding-bottom: 20px;
-	padding-top: 40px;
-}
-
-.currentTemp {
-	margin: 0;
-	text-align: center;
-	font-size: 22px;
+	font-size: 120px;
 }
 
 .currentTempNumber {
 	margin: 0;
 	text-align: center;
-	font-size: 80px;
+	font-size: 90px;
 	font-weight: bold;
-	padding-top: 10px;
-	padding-bottom: 40px;
+	padding-top: 50px;
+	padding-left: 80px;
+	padding-right: 20px;
+}
+
+@media (max-width: 800px) {
+	.currentTempNumber {
+		margin: 0;
+		font-size: 70px;
+		padding: 0;
+		padding-bottom: 20px;
+	}
+
+	.tempWrapper {
+		margin: 0;
+		flex-direction: column;
+	}
+
+	.weatherImageWrapper {
+		align-items: center;
+		margin: auto;
+	}
+
+	.highLowTempWrapper {
+		text-align: center;
+		margin: auto;
+	}
+
+	.navigation {
+		justify-content: center;
+	}
 }

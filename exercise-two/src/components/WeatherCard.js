@@ -11,19 +11,25 @@ function WeatherCard({
 	windSpeed = "Unknown",
 }) {
 	return (
-		<section className="WeatherCard">
+		<section
+			className="WeatherCard"
+			style={{
+				backgroundColor: `rgba(150, 150, 150, ${cloudiness / 100})`,
+			}}
+		>
 			<div className="tempWrapper">
 				<div className="currentWeatherWrapper">
 					<div className="weatherImageWrapper">
 						<WeatherImage weatherType={weatherType} />
 					</div>
-					<p className="currentTemp">Current Temp:</p>
-					<p className="currentTempNumber">{currentTemp}</p>
 				</div>
 
+				<p className="currentTempNumber">{currentTemp}</p>
+
 				<div className="highLowTempWrapper">
-					<p className="text">High Temp: {highTemp}</p>
-					<p className="text">Low Temp: {lowTemp}</p>
+					<p className="text">{highTemp}</p>
+					<p class="solid"></p>
+					<p className="text">{lowTemp}</p>
 				</div>
 			</div>
 

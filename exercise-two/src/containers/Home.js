@@ -67,10 +67,18 @@ function Home() {
 	return (
 		<main className="App">
 			<nav className="navigation">
-				<a href="?city=Paris" className={city === "Paris" && "Active"}>Paris</a>
-				<a href="?city=Tokyo" className={city === "Tokyo" && "Active"}>Tokyo</a>
-				<a href="?city=Chengdu" className={city === "Chengdu" && "Active"}>Chengdu</a>
-				<a href="?city=Seattle" className={city === "Seattle" && "Active"}>Seattle</a>
+				<a href="?city=Paris" className={city === "Paris" && "Active"}>
+					Paris
+				</a>
+				<a href="?city=Tokyo" className={city === "Tokyo" && "Active"}>
+					Tokyo
+				</a>
+				<a href="?city=Chengdu" className={city === "Chengdu" && "Active"}>
+					Chengdu
+				</a>
+				<a href="?city=Seattle" className={city === "Seattle" && "Active"}>
+					Seattle
+				</a>
 			</nav>
 			<h1 className="title">{city}</h1>
 			<WeatherCard
