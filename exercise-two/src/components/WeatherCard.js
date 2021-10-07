@@ -14,7 +14,9 @@ function WeatherCard({
 		<section
 			className="WeatherCard"
 			style={{
-				backgroundColor: `rgba(100, 120, 160, ${cloudiness / 100})`,
+				backgroundColor: `rgba(80, 90, 110, ${cloudiness / 100})`,
+				color: `rgb(${cloudiness * 3}, ${cloudiness * 3}, ${cloudiness * 3})`,
+				borderColor: `rgb(${cloudiness * 3},  ${cloudiness * 3}, ${cloudiness * 3})`,
 			}}
 		>
 			<div className="tempWrapper">
@@ -28,16 +30,14 @@ function WeatherCard({
 
 				<div className="highLowTempWrapper">
 					<p className="text">{highTemp}</p>
-					<p class="solid"></p>
+					<p class="solid" style={{
+						borderColor: `rgb(${cloudiness * 3},  ${cloudiness * 3}, ${cloudiness * 3})`,
+					}}></p>
 					<p className="text">{lowTemp}</p>
 				</div>
 			</div>
 
-			<p className="text"
-			style={{
-				color: `rgb(${cloudiness * 2.55},  ${cloudiness * 2.55}, ${cloudiness * 2.55})`,
-			}}
-			>Cloudiness: {cloudiness}</p>
+			<p className="text">Cloudiness: {cloudiness}</p>
 
 			<p className="text">Humidity: {humidity}</p>
 

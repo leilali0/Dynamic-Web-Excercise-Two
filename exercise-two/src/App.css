@@ -32,7 +32,7 @@
 
 .WeatherCard {
 	margin: 30px 80px;
-	border: 1.5px solid black;
+	border: 1.5px solid;
 	border-radius: 8px;
 	padding: 0 30px;
 }
