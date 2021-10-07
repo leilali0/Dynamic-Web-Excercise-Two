@@ -14,7 +14,7 @@ function WeatherCard({
 		<section
 			className="WeatherCard"
 			style={{
-				backgroundColor: `rgba(150, 150, 150, ${cloudiness / 100})`,
+				backgroundColor: `rgba(100, 120, 160, ${cloudiness / 100})`,
 			}}
 		>
 			<div className="tempWrapper">
@@ -33,7 +33,11 @@ function WeatherCard({
 				</div>
 			</div>
 
-			<p className="text">Cloudiness: {cloudiness}</p>
+			<p className="text"
+			style={{
+				color: `rgb(${cloudiness * 2.55},  ${cloudiness * 2.55}, ${cloudiness * 2.55})`,
+			}}
+			>Cloudiness: {cloudiness}</p>
 
 			<p className="text">Humidity: {humidity}</p>
 
